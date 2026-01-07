@@ -192,8 +192,8 @@ $users = User::getAll();
                     <div class="col-md-6 col-lg-5">
                         <div class="card shadow p-4">
                             <h2 class="mb-4 text-center">Login</h2>
-                                <?php if (isset($error)): ?>
-                                <div class="alert alert-danger text-center">That password was incorrect. Please try again.</div>
+                                <?php if (isset($error_login)): ?>
+                                <div class="alert alert-danger text-center"><?php echo $error_login; ?></div>
                                 <?php endif; ?>
                             <form action="login.php" method="post">
                                 <div class="mb-3">
