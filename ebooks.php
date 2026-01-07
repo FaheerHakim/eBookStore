@@ -5,9 +5,41 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <title>View eBooks</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eBooks here</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+<style>
+    body.login-page {
+        min-height: 100vh;
+    }
+    body.login-page, body.login-page * { color: #000 !important; }
+    body.login-page a, body.login-page a * { color: #000 !important; }
+    body.login-page a:hover, body.login-page a:hover * { color: #ecd17b !important; }
+    body.login-page i, body.login-page .icon { color: #3ea3c7 !important; }
+    .login-page .btn-primary {
+        background-color: #b3e6fb !important;
+        border-color: #b3e6fb !important;
+    }
+    .login-page .btn-primary:hover, .login-page .btn-primary:focus {
+        background-color: #b3e6fb !important;
+        border-color: #b3e6fb !important;
+    }
+</style>
 </head>
 <body class="account-page" style="background-color:#fff !important; font-family: 'Times New Roman', Times, serif !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
 	<div id="header-wrap" style="background:#fff !important;">
