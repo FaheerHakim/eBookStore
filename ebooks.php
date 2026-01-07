@@ -150,6 +150,70 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 
 					<div class="tab-content">
 						<div id="all-genre" data-tab-content class="active">
+							<?php
+							 $categoryFilter = $selectedCategory;
+							 if ($categoryFilter === 'all') {
+								 $statement = $db->query('SELECT * FROM ebooks ORDER BY id DESC LIMIT 10');
+							 } else {
+								 $statement = $db->prepare('SELECT * FROM ebooks WHERE category = ? ORDER BY id DESC LIMIT 10');
+								 $statement->execute([$categoryFilter]);
+							 }
+							$ebooks = $statement->fetchAll(PDO::FETCH_ASSOC);
+							if ($is_admin && !empty($ebooks)) {
+							echo '<form method="post" id="bulkDeleteForm" style="margin-bottom:16px;">';
+							echo '<div class="d-flex justify-content-between align-items-center mb-3">';
+							$buttonWidth = '220px';
+							echo '<a href="add_ebook.php" class="btn btn-primary" style="width:'.$buttonWidth.';border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;">Add eBook</a>';
+							echo '<button type="button" id="addToCartBtn" class="btn btn-success" style="width:'.$buttonWidth.';border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;">Add to cart</button>';
+							echo '</div>';
+								echo '<div class="row" id="ebooks-list">';
+								foreach ($ebooks as $ebook) {
+									echo '<div class="col-md-3">';
+									echo '<div class="product-item">';
+									echo '<figure class="product-style">';
+									// Checkbox voor bulk delete verwijderd
+								echo '<input type="checkbox" class="ebook-cart-checkbox" name="selected_ebooks[]" value="'.htmlspecialchars($ebook['id']).'" style="position:absolute;left:8px;top:8px;z-index:2;">';
+						echo '<img src="'.htmlspecialchars($ebook['cover_image']).'" alt="'.htmlspecialchars($ebook['title']).'" class="product-item" style="width:270px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 4px 24px rgba(62,163,199,0.18);background:#fff;padding:12px;border:3px solid #6f4929ff;">';
+							echo '<div class="d-flex justify-content-between align-items-center" style="margin-top:10px;">';
+							echo '<button type="button" class="btn btn-primary ebook-delete-btn" data-id="'.htmlspecialchars($ebook['id']).'" style="border-radius:10px;background-color:#ecd17b !important;border-color:#ecd17b !important;color:#000 !important;">Delete</button>';
+							echo '<a href="uploads/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">More info</a>';
+							echo '</div>';
+									echo '</figure>';
+									echo '<figcaption>';
+									echo '<h3>'.htmlspecialchars($ebook['title']).'</h3>';
+									echo '<span>'.htmlspecialchars($ebook['category']).'</span>';
+									echo '<div class="item-price">'.intval($ebook['price']).' units</div>';
+									echo '</figcaption>';
+									echo '</div>';
+									echo '</div>';
+								}
+							echo '</div>';
+							// Add to cart knop verwijderd
+							echo '</form>';
+							} else {
+								echo '<div class="row" id="ebooks-list">';
+								if (empty($ebooks)) {
+									echo '<div class="col-12 text-center py-4">No eBooks found in this category.</div>';
+								}
+								foreach ($ebooks as $ebook) {
+									echo '<div class="col-md-3">';
+									echo '<div class="product-item">';
+									echo '<figure class="product-style">';
+									echo '<img src="'.htmlspecialchars($ebook['cover_image']).'" alt="'.htmlspecialchars($ebook['title']).'" class="product-item" style="width:270px;height:380px;object-fit:cover;">';
+									echo '<a href="uploads/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" class="add-to-cart" style="display:block;text-align:center;margin-top:10px;">Bekijk/download</a>';
+									echo '</figure>';
+									echo '<figcaption>';
+									echo '<h3>'.htmlspecialchars($ebook['title']).'</h3>';
+									echo '<span>'.htmlspecialchars($ebook['category']).'</span>';
+									echo '<div class="item-price">€ '.number_format($ebook['price'], 2, ',', '.').'</div>';
+									echo '</figcaption>';
+									echo '</div>';
+									echo '</div>';
+								}
+								echo '</div>';
+							}
+							// Bulk delete PHP logica verwijderd
+							?>
 
 								
 
