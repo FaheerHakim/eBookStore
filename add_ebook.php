@@ -1,4 +1,44 @@
-<!DOCTYPE html>
+<?php
+session_start();
+include_once('classes/Db.php');
+
+// Alleen admins mogen eBooks toevoegen
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    die('Access denied');
+}
+
+$uploadError = '';
+$successMsg = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = $_POST['title'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $price = $_POST['price'] ?? '';
+    $category = $_POST['category'] ?? '';
+
+    $coverPath = null;
+    $pdfPath = null;
+
+    if (isset($_FILES['cover_image']) && $_FILES['cover_image']['error'] === UPLOAD_ERR_OK) {
+        $coverPath = 'covers/' . basename($_FILES['cover_image']['name']);
+        move_uploaded_file($_FILES['cover_image']['tmp_name'], $coverPath);
+    }
+
+    if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === UPLOAD_ERR_OK) {
+        $pdfPath = 'ebooks/' . basename($_FILES['pdf_file']['name']);
+        move_uploaded_file($_FILES['pdf_file']['tmp_name'], $pdfPath);
+    }
+
+    if ($coverPath && $pdfPath) {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare("INSERT INTO ebooks (title, description, price, category, cover_image, pdf_path, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->execute([$title, $description, $price, $category, $coverPath, $pdfPath]);
+        $successMsg = "eBook added successfully!";
+    } else {
+        $uploadError = "Upload failed.";
+    }
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Add eBook</title>
