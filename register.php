@@ -2,30 +2,21 @@
 
 include_once(__DIR__ . '/classes/User.php');
 
-$register_Error = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-
+if(!empty($_POST)) {
+    $register_Error = null;
     try {
         $user = new User();
-        $user->setUsername($username);
-        $user->setEmail($email);
-        $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
+        $user->setUsername($_POST['username']);
+        $user->setEmail($_POST['email']);
+        $user->setPassword($_POST['password']);
         $user->save();
-        // eventueel redirecten of succesmelding
-    } catch (PDOException $e) {
-        if ($e->getCode() == 23000) { // Duplicate entry
-            $register_Error = "Username or email already exists.";
-        } else {
-            $register_Error = "An error occurred: " . $e->getMessage();
-        }
-        var_dump($e->getMessage(), $e->getCode());
+    } catch (Exception $e) {
+        $register_Error = $e->getMessage();
     }
 }
- 
+
+$users = User::getAll();
+
 
 ?><!DOCTYPE html>
 <html lang="en">
