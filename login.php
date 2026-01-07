@@ -2,35 +2,42 @@
 include_once(__DIR__ . '/classes/User.php');
 session_abort();
 
-function canLogin($username, $password) {
+function canLogin($username, $password, & $error_msg = null) {
   $conn = Db::getConnection();
   $statement = $conn->prepare("SELECT * FROM users WHERE username = :username");
   $statement->bindValue(':username', $username);
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
   if(!$user) {
+      $error_msg = "User not found";
       return false;
   }
-  $hash = $user["password"];
-  if(password_verify($password, $hash)) {
+  if(isset($user['password']) && password_verify($password, $user['password'])) {
       return true;
   } else {
+      $error_msg = "Invalid password";
       return false;
 }
 }
 if(!empty($_POST)) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $error_login = null;
     
-    if(canLogin($username, $password)) {
-        session_start();
+    if(canLogin($username, $password, $error_login)) {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users WHERE username = :username");
+        $statement->bindValue(":username", $username);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
         $_SESSION['username'] = $username;
-        header("Location: home.php");
-
+        header('Location: profile.php');
+        exit();
     } else {
-        $error = true;
+        $error_login = "Invalid username or password.";
 }
 }
+$users = User::getAll();
 
 ?><!DOCTYPE html>
 <html lang="en">
