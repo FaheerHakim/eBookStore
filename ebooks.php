@@ -1,5 +1,7 @@
 <?php
 session_start();
+include_once('classes/Db.php');
+$db = Db::getConnection();
 $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $_SESSION['is_admin'] === 1 || $_SESSION['is_admin'] === '1');
 
 ?><!DOCTYPE html>
