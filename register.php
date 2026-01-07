@@ -4,6 +4,8 @@ session_start();
 
 if(!empty($_POST)) {
 
+    $register_Error = null;
+
     try{
         $user = new User();
         $user->setUsername($_POST['username']);
@@ -59,8 +61,8 @@ if(!empty($_POST)) {
 </head>
 <body class="register-page" style="background-color:#fff !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
 
-    <?php if (isset($register_Error) && $registerError): ?>
-        <div class="alert alert-danger text-center"><?php echo htmlspecialchars($registerError); ?></div>
+    <?php if (isset($register_Error) && $register_Error): ?>
+        <div class="alert alert-danger text-center"><?php echo htmlspecialchars($register_Error); ?></div>
     <?php endif; ?>
 
     <div id="header-wrap" style="background:#fff !important;">
