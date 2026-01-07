@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if(!isset($_SESSION['username'])) {
+     header("Location: login.php");
+    exit();
+}
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -64,7 +70,8 @@
                                         <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                        <li><a class="dropdown-item" href="logout.php">Uitloggen</a></li>
+										<li><a class="dropdown-item" href="change_password.php">Reset password</a></li>
+                                        <li><a class="dropdown-item" href="logout.php">Log out</a></li>
                                     </ul>
                                 </div>
                             <?php else: ?>
