@@ -68,7 +68,7 @@
                                         <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                        <li><a class="dropdown-item" href="logout.php">Uitloggen</a></li>
+                                        <li><a class="dropdown-item" href="logout.php">Log out</a></li>
                                     </ul>
                                 </div>
                             <?php else: ?>
@@ -133,7 +133,7 @@
                             <!-- Stap 1: Gebruiker vult het formulier in -->
                             <form action="register.php" method="post">
                                 <div class="mb-3">
-                                    <label for="new_username" class="form-label">Gebruikersnaam</label>
+                                    <label for="new_username" class="form-label">Username</label>
                                     <input type="text" id="username" name="username" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
@@ -141,11 +141,14 @@
                                     <input type="email" id="email" name="email" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="new_password" class="form-label">Wachtwoord</label>
+                                    <label for="new_password" class="form-label">Password</label>
                                     <input type="password" id="password" name="password" class="form-control" required>
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" name="register_submit" class="btn btn-success">Sign Up</button>
+                                </div>
+                                  <div class="text-center mt-3">
+                                    <a href="login.php" class="text-decoration-underline">Already have an account? Log in</a>
                                 </div>
                             </form>
                         </div>
