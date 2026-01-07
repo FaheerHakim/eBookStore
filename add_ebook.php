@@ -3,7 +3,7 @@ session_start();
 include_once('classes/Db.php');
 
 // Alleen admins mogen eBooks toevoegen
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     die('Access denied');
 }
 
