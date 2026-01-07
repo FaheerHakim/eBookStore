@@ -12,7 +12,7 @@ if(!empty($_POST)) {
         $user->save();
     }
     catch (Exception $e){
-        $error = $e->getMessage();
+        $register_Error = $e->getMessage();
 }
 }
     $users = User::getAll();
@@ -59,7 +59,7 @@ if(!empty($_POST)) {
 </head>
 <body class="register-page" style="background-color:#fff !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
 
-    <?php if (isset($registerError) && $registerError): ?>
+    <?php if (isset($register_Error) && $registerError): ?>
         <div class="alert alert-danger text-center"><?php echo htmlspecialchars($registerError); ?></div>
     <?php endif; ?>
 
