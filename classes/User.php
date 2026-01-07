@@ -69,10 +69,19 @@ class User {
 
      public function save() {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+        // Controleer of username of email al bestaat
+        $check = $conn->prepare("SELECT id FROM users WHERE username = :username OR email = :email");
+        $check->bindValue(":username", $this->username);
+        $check->bindValue(":email", $this->email);
+        $check->execute();
+        if ($check->fetch()) {
+            throw new Exception("Gebruikersnaam of e-mail bestaat al.");
+        }
+        $statement = $conn->prepare("INSERT INTO users (username, email, password, currency_units) VALUES (:username, :email, :password, :currency_units)");
         $statement->bindValue(":username", $this->username);
         $statement->bindValue(":email", $this->email);
         $statement->bindValue(":password", password_hash($this->password, PASSWORD_DEFAULT, ['cost' => 12]));
+        $statement->bindValue(":currency_units", $this->currency_units ?? 1000);
         $statement->execute();
     }
 
