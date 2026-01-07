@@ -131,7 +131,7 @@
                              <h2 class="mb-4 text-center">Sign Up</h2>
                            
                             <!-- Stap 1: Gebruiker vult het formulier in -->
-                            <form action="signup.php" method="post">
+                            <form action="register.php" method="post">
                                 <div class="mb-3">
                                     <label for="new_username" class="form-label">Gebruikersnaam</label>
                                     <input type="text" id="username" name="username" class="form-control" required>
