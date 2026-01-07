@@ -208,10 +208,3 @@ if(!empty($_POST)) {
 
 </body>
 </html>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
