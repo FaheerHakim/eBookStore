@@ -25,28 +25,14 @@ if(!isset($_SESSION['username'])) {
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <style>
-    body.register-page {
-        min-height: 100vh;
-    }
-    body.register-page, body.register-page * { color: #000 !important; }
-    body.register-page a, body.register-page a * { color: #000 !important; }
-    body.register-page a:hover, body.register-page a:hover * { color: #ecd17b !important; }
-    body.register-page i, body.register-page .icon { color: #3ea3c7 !important; }
-    .register-page .btn-success {
-        background-color: #b3e6fb !important;
-        border-color: #b3e6fb !important;
-        color: #000 !important;
-    }
-    .register-page .btn-success:hover, .register-page .btn-success:focus {
-        background-color: #b3e6fb !important;
-        border-color: #b3e6fb !important;
-        color: #000 !important;
-    }
+    body.account-page, body.account-page * { color: #000 !important; }
+		body.account-page a, body.account-page a * { color: #000 !important; }
+		body.account-page a:hover, body.account-page a:hover * { color: #ecd17b !important; }
+		body.account-page i, body.account-page .icon { color: #3ea3c7 !important; }
 </style>
 </head>
-<body class="register-page" style="background-color:#fff !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
-
-    <div id="header-wrap" style="background:#fff !important;">
+<body class="account-page" style="background-color:#fff !important; font-family: 'Times New Roman', Times, serif !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+	<div id="header-wrap" style="background:#fff !important;">
         <div class="top-content">
             <div class="container-fluid">
                 <div class="row">
@@ -149,18 +135,9 @@ if(!isset($_SESSION['username'])) {
     </footer>
 
     <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
 
-</body>
-</html>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
