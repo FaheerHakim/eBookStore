@@ -69,7 +69,6 @@ class User {
 
      public function save() {
         $conn = Db::getConnection();
-        // Controleer of username of email al bestaat
         $statement = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         $statement->bindValue(":username", $this->username);
         $statement->bindValue(":email", $this->email);
