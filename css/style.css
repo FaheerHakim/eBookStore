@@ -16,7 +16,7 @@ html {
   overflow-y: scroll;
 }
 footer, footer#footer, .footer-06 {
-  background-color: #fffbe6 !important; /* light yellow */
+  background-color: #E0E0E0!important; /* light yellow */
 }
 /* DEBUG: Force dropdown menu background color for all menu dropdowns (highest specificity, !important, and attribute selectors) */
 .stellarnav ul ul,
@@ -1765,26 +1765,7 @@ img.post-image {
   object-fit: cover;
 }
 
-/* -- Slick Slide
---------------------------------------------------------------*/
-/* .slick-dots {
-  bottom: -100px;
-}
 
-.slick-dots li {
-  width: 10px;
-  height: 10px;
-  background: #D7D5CC;
-  color: #D7D5CC;
-  border-radius: 50%;
-}
-
-.slick-dots .slick-active {
-  color: #74642F;
-  background: #74642F;
-  border: 1px solid #D7D5CC;
-  outline: 1px solid #D7d5cc;
-} */
 
 /* -- Top Menu Part
 --------------------------------------------------------------*/
