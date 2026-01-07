@@ -108,22 +108,22 @@ $users = User::getAll();
                     </div>
                     <div class="col-md-6">
                         <div class="right-element">
-                          
+                           <?php if(isset($_SESSION['username'])): ?>
                                 <div class="dropdown d-inline-block">
                                     <a href="#" class="user-account for-buy dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="icon icon-user"></i>
-                                        <span></span>
+                                        <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                         <li><a class="dropdown-item" href="change_password.php">Reset password</a></li>
                                         <li><a class="dropdown-item" href="logout.php">Log out</a></li>
                                     </ul>
                                 </div>
-                            
+                            <?php else: ?>
                                 <a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
-                         
+                            <?php endif; ?>
                             <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
-                                    $)</span></a>
+                                    units)</span></a>
 
                             <div class="action-menu">
 
