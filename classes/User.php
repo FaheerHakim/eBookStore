@@ -66,4 +66,21 @@ class User {
 
         return $this;
     }
+
+     public function save() {
+        $conn = Db::getConnection();
+        // Controleer of username of email al bestaat
+        $statement = $conn->prepare("SELECT id FROM users WHERE username = :username OR email = :email");
+        $statement->bindValue(":username", $this->username);
+        $statement->bindValue(":email", $this->email);
+        $statement->execute();
+    }
+
+    public static function getAll() {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM users");
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
