@@ -31,8 +31,10 @@ if(!empty($_POST)) {
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         $_SESSION['username'] = $username;
+        $_SESSION['is_admin'] = isset($user['is_admin']) ? $user['is_admin'] : 0;
         header('Location: profile.php');
         exit();
+        
     } else {
         $error_login = "Invalid username or password.";
 }
