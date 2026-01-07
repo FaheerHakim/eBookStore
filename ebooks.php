@@ -145,7 +145,20 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 				<div class="col-md-12">
 
 					<ul class="tabs">
-						
+						<?php 
+						$categories = [
+							'all' => 'All Genre',
+							'OCD' => 'OCD',
+							'Panic & Anxiety' => 'Panic & Anxiety',
+							'Productivity' => 'Productivity',
+							'Stress tolerance' => 'Stress tolerance'
+						];
+						 $selectedCategory = isset($_GET['cat']) ? $_GET['cat'] : 'all';
+						 foreach ($categories as $cat_key => $cat_label): ?>
+						 <li class="tab<?php if($selectedCategory === $cat_key) echo ' active'; ?>">
+						<a href="?cat=<?= urlencode($cat_key) ?>" class="cat-tab-link" data-cat="<?= htmlspecialchars($cat_key) ?>"><?= htmlspecialchars($cat_label) ?></a>
+						 </li>
+						<?php endforeach; ?>
 					</ul>
 
 					<div class="tab-content">
