@@ -216,34 +216,31 @@ $users = User::getAll();
     </main>
 
 
-        <footer id="footer" style="background-color: #fffbe6;">
-            <div class="container">
-                <div class="row align-items-center align-items-stretch mb-5">
-                    <div class="col-md-4 py-4 py-md-5 aside-stretch d-flex align-items-center">
-                        <div class="w-100">
-                            <span class="subheading">Subscribe to our</span>
-                            <h3 class="heading-section">Newsletter</h3>
-                            <form action="#" class="subscribe-form mt-3" style="max-width:400px;">
-                                <div class="form-group mb-2">
-                                    <input type="text" class="form-control" placeholder="Enter email address" style="border-radius:10px;">
-                                </div>
-                                <div>
-                                    <button type="submit" class="btn btn-primary w-100" style="border-radius:10px;"><span>Submit</span></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </footer>
-      
+	<!-- Footer -->
+	 <footer id="footer" style="background-color: #fffbe6;">
+			<div class="container">
+				<div class="row align-items-center align-items-stretch mb-5">
+					<div class="col-md-4 py-4 py-md-5 aside-stretch d-flex align-items-center">
+						<div class="w-100">
+							<span class="subheading">Subscribe to our</span>
+							<h3 class="heading-section">Newsletter</h3>
+							<form action="#" class="subscribe-form mt-3" style="max-width:400px;">
+								<div class="form-group mb-2">
+									<input type="text" class="form-control" placeholder="Enter email address" style="border-radius:10px;">
+								</div>
+								<div>
+									<button type="submit" class="btn btn-primary w-100" style="border-radius:10px;"><span>Submit</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		 </footer>
 
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
-
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>
