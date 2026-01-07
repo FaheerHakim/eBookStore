@@ -1,6 +1,5 @@
 <?php
 include_once(__DIR__ . '/classes/User.php');
-session_abort();
 
 function canLogin($username, $password, & $error_msg = null) {
   $conn = Db::getConnection();
@@ -19,6 +18,7 @@ function canLogin($username, $password, & $error_msg = null) {
       return false;
 }
 }
+session_start();
 if(!empty($_POST)) {
     $username = $_POST['username'];
     $password = $_POST['password'];
