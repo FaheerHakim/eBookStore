@@ -1,23 +1,31 @@
 <?php
-session_start();
+
 include_once(__DIR__ . '/classes/User.php');
 
-if(!empty($_POST)) {
+$register_Error = '';
 
-    $register_Error = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    try{
+    try {
         $user = new User();
-        $user->setUsername($_POST['username']);
-        $user->setEmail($_POST['email']);
-        $user->setPassword($_POST['password']);
+        $user->setUsername($username);
+        $user->setEmail($email);
+        $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
         $user->save();
+        // eventueel redirecten of succesmelding
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) { // Duplicate entry
+            $register_Error = "Username or email already exists.";
+        } else {
+            $register_Error = "An error occurred: " . $e->getMessage();
+        }
+        var_dump($e->getMessage(), $e->getCode());
     }
-    catch (Exception $e){
-        $register_Error = $e->getMessage();
 }
-}
-    $users = User::getAll();
+ 
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -60,10 +68,6 @@ if(!empty($_POST)) {
 </style>
 </head>
 <body class="register-page" style="background-color:#fff !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
-
-    <?php if (isset($register_Error) && $register_Error): ?>
-        <div class="alert alert-danger text-center"><?php echo htmlspecialchars($register_Error); ?></div>
-    <?php endif; ?>
 
     <div id="header-wrap" style="background:#fff !important;">
         <div class="top-content">
@@ -149,7 +153,9 @@ if(!empty($_POST)) {
                     <div class="col-md-6 col-lg-5">
                         <div class="card shadow p-4">
                              <h2 class="mb-4 text-center">Sign Up</h2>
-                           
+                           <?php if (isset($register_Error)): ?>
+                                <div class="alert alert-danger text-center"><?php echo htmlspecialchars($register_Error); ?></div>
+                            <?php endif; ?>
                             <!-- Stap 1: Gebruiker vult het formulier in -->
                             <form action="register.php" method="post">
                                 <div class="mb-3">
