@@ -1,5 +1,23 @@
+<?php
+include_once(__DIR__ . '/classes/User.php');
+session_start();
 
-<!DOCTYPE html>
+if(!empty($_POST)) {
+
+    try{
+        $user = new User();
+        $user->setUsername($_POST['username']);
+        $user->setEmail($_POST['email']);
+        $user->setPassword($_POST['password']);
+        $user->save();
+    }
+    catch (Exception $e){
+        $error = $e->getMessage();
+}
+}
+    $users = User::getAll();
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Sign up - eBookStore</title>
