@@ -71,7 +71,7 @@
                                 <a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
                             <?php endif; ?>
 							<a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
-									$)</span></a>
+									units)</span></a>
 
 							<div class="action-menu">
 
