@@ -70,9 +70,10 @@ class User {
      public function save() {
         $conn = Db::getConnection();
         // Controleer of username of email al bestaat
-        $statement = $conn->prepare("SELECT id FROM users WHERE username = :username OR email = :email");
+        $statement = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         $statement->bindValue(":username", $this->username);
         $statement->bindValue(":email", $this->email);
+        $statement->bindValue(":password", password_hash($this->password, PASSWORD_DEFAULT, ['cost' => 12]));
         $statement->execute();
     }
 
