@@ -24,22 +24,45 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <style>
-    body.login-page {
-        min-height: 100vh;
-    }
-    body.login-page, body.login-page * { color: #000 !important; }
-    body.login-page a, body.login-page a * { color: #000 !important; }
-    body.login-page a:hover, body.login-page a:hover * { color: #ecd17b !important; }
-    body.login-page i, body.login-page .icon { color: #3ea3c7 !important; }
-    .login-page .btn-primary {
-        background-color: #b3e6fb !important;
-        border-color: #b3e6fb !important;
-    }
-    .login-page .btn-primary:hover, .login-page .btn-primary:focus {
-        background-color: #b3e6fb !important;
-        border-color: #b3e6fb !important;
-    }
-</style>
+		
+		body.account-page, body.account-page * { color: #000 !important; }
+		body.account-page a, body.account-page a * { color: #000 !important; }
+		body.account-page a:hover, body.account-page a:hover * { color: #ecd17b !important; }
+		body.account-page i, body.account-page .icon { color: #3ea3c7 !important; }
+		.ebook-card {
+			background: #fffbe6;
+			border-radius: 18px;
+			box-shadow: 0 2px 12px rgba(62,163,199,0.08);
+			border: 1px solid #b3e6fb;
+			transition: box-shadow 0.2s;
+		}
+		.ebook-card:hover {
+			box-shadow: 0 4px 24px rgba(62,163,199,0.18);
+		}
+		.ebook-card .card-title {
+			color: #3ea3c7;
+			font-weight: 600;
+		}
+		.ebook-card .btn-primary {
+			background-color: #b3e6fb !important;
+			border-color: #b3e6fb !important;
+			color: #000 !important;
+		}
+		.ebook-card .btn-primary:hover, .ebook-card .btn-primary:focus {
+			background-color: #3ea3c7 !important;
+			border-color: #3ea3c7 !important;
+			color: #fff !important;
+		}
+		.ebook-card img.card-img-top {
+			width: 270px;
+			height: 380px;
+			object-fit: cover;
+			background: #fff;
+			border-radius: 18px;
+			box-shadow: 0 4px 24px rgba(62,163,199,0.18);
+			padding: 12px;
+		}
+	</style>
 </head>
 <body class="account-page" style="background-color:#fff !important; font-family: 'Times New Roman', Times, serif !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
 	<div id="header-wrap" style="background:#fff !important;">
