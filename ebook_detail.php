@@ -46,8 +46,11 @@ if (!$ebook) {
         body, body * { font-family: 'Times New Roman', Times, serif !important; }
         .ebook-detail-card { background: #fffbe6; border-radius: 18px; box-shadow: 0 2px 12px rgba(62,163,199,0.08); border: 1px solid #b3e6fb; padding: 2.5rem 2rem 2rem 2rem; margin-top: 60px; }
         .ebook-detail-card h2 { color: #3ea3c7; font-weight: 700; }
-        .btn-primary { background-color: #b3e6fb !important; border-color: #b3e6fb !important; color: #000 !important; }
-        .btn-primary:hover, .btn-primary:focus { background-color: #3ea3c7 !important; border-color: #3ea3c7 !important; color: #fff !important; }
+    .btn-primary { background-color: #b3e6fb !important; border-color: #b3e6fb !important; color: #000 !important; }
+    .btn-primary:hover, .btn-primary:focus { background-color: #3ea3c7 !important; border-color: #3ea3c7 !important; color: #fff !important; }
+    .btn-secondary { background-color: #ecd17b !important; border-color: #ecd17b !important; color: #000 !important; }
+    .btn-secondary:hover, .btn-secondary:focus { background-color: #b3e6fb !important; border-color: #b3e6fb !important; color: #000 !important; }
+    .ebook-btn { width: 220px; height: 44px; border-radius: 10px; font-size: 1rem; display: inline-block; margin-bottom: 8px; }
         .ebook-cover { width: 270px; height: 380px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 24px rgba(62,163,199,0.18); background: #fff; padding: 12px; border: 3px solid #6f4929ff; }
     </style>
 </head>
@@ -61,7 +64,10 @@ if (!$ebook) {
         <div class="row">
             <div class="col-md-5 text-center">
                 <img src="<?php echo htmlspecialchars($ebook['cover_image']); ?>" alt="Cover" class="ebook-cover mb-3">
-                <a href="ebooks/<?php echo htmlspecialchars($ebook['pdf_path']); ?>" target="_blank" class="btn btn-primary w-100 mb-2">Bekijk/download PDF</a>
+                <a href="ebook_detail.php?id=<?php echo htmlspecialchars($ebook['id']); ?>" target="_blank" class="btn btn-primary ebook-btn">View</a>
+                <div>
+                        <a href="ebooks.php" class="btn btn-secondary ebook-btn mt-2">Back</a>
+                    </div>
             </div>
             <div class="col-md-7">
                 <?php if ($is_admin && isset($_GET['edit'])): ?>
@@ -83,8 +89,11 @@ if (!$ebook) {
                             <label class="form-label">Category</label>
                             <input type="text" name="category" class="form-control" value="<?php echo htmlspecialchars($ebook['category']); ?>" required>
                         </div>
-                        <button type="submit" name="edit_ebook" class="btn btn-primary">Save</button>
-                        <a href="ebook_detail.php?id=<?php echo $ebook_id; ?>" class="btn btn-secondary ms-2">Cancel</a>
+                        <div class="text-center mt-2">
+                            <button type="submit" name="edit_ebook" class="btn btn-primary ebook-btn mb-2">Save</button>
+                            <br>
+                            <a href="ebook_detail.php?id=<?php echo $ebook_id; ?>" style="text-decoration:underline; color:#3ea3c7; font-size:1.1rem; display:inline-block;">Cancel</a>
+                        </div>
                     </form>
                 <?php else: ?>
                     <!-- Overzicht -->
@@ -94,9 +103,8 @@ if (!$ebook) {
                     <p><strong>Added on:</strong> <?php echo htmlspecialchars($ebook['created_at']); ?></p>
                 <?php endif; ?>
                 <div class="mt-4">
-                    <a href="ebooks.php" class="btn btn-secondary">Go back</a>
                     <?php if ($is_admin && !isset($_GET['edit'])): ?>
-                        <a href="ebook_detail.php?id=<?php echo $ebook_id; ?>&edit=1" class="btn btn-primary ms-2">Edit</a>
+                        <a href="ebook_detail.php?id=<?php echo $ebook_id; ?>&edit=1" class="btn btn-primary ebook-btn ms-2 mb-2">Edit</a>
                     <?php endif; ?>
                 </div>
             </div>
