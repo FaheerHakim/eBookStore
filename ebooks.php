@@ -55,15 +55,44 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 			border-color: #3ea3c7 !important;
 			color: #fff !important;
 		}
-		.ebook-card img.card-img-top {
-			width: 270px;
-			height: 380px;
-			object-fit: cover;
-			background: #fff;
-			border-radius: 18px;
-			box-shadow: 0 4px 24px rgba(62,163,199,0.18);
-			padding: 12px;
-		}
+	   .ebook-card img.card-img-top {
+		   width: 270px;
+		   height: 380px;
+		   object-fit: cover;
+		   background: #fff;
+		   border-radius: 18px;
+		   box-shadow: 0 4px 24px rgba(62,163,199,0.18);
+		   padding: 12px;
+	   }
+
+	   /* Custom search bar styling */
+	   .search-box .form-control {
+		   border-radius: 10px 0 0 10px !important;
+		   border: 2px solid #b3e6fb !important;
+		   background: #fffbe6 !important;
+		   color: #000 !important;
+		   box-shadow: none;
+		   font-size: 1.1rem;
+	   }
+	   .search-box .form-control:focus {
+		   border-color: #3ea3c7 !important;
+		   background: #fff !important;
+		   color: #000 !important;
+		   box-shadow: 0 0 0 2px #b3e6fb33;
+	   }
+	   .search-box .btn-primary {
+		   border-radius: 0 10px 10px 0 !important;
+		   background-color: #b3e6fb !important;
+		   border-color: #b3e6fb !important;
+		   color: #000 !important;
+		   font-weight: 600;
+		   transition: background 0.2s, color 0.2s;
+	   }
+	   .search-box .btn-primary:hover, .search-box .btn-primary:focus {
+		   background-color: #3ea3c7 !important;
+		   border-color: #3ea3c7 !important;
+		   color: #fff !important;
+	   }
 	</style>
 </head>
 <body class="account-page" style="background-color:#fff !important; font-family: 'Times New Roman', Times, serif !important;" data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
@@ -143,19 +172,6 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 			</div>
 		</header>
 		<div class="container">
-			<div class="row justify-content-center mb-4">
-				<div class="col-md-8 d-flex align-items-center justify-content-between">
-					<form role="search" method="get" class="search-box flex-grow-1 me-3" action="ebooks.php">
-						<div class="input-group">
-							<input class="form-control" placeholder="Search by title..." type="search" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-							<button class="btn btn-primary" type="submit">Search</button>
-						</div>
-					</form>
-					<?php if ($is_admin): ?>
-						<a href="add_ebook.php" class="btn btn-primary" style="width:220px;border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;">Add eBook</a>
-					<?php endif; ?>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="tabs">
@@ -174,6 +190,21 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 						 </li>
 						<?php endforeach; ?>
 					</ul>
+				   <div class="row mb-4 align-items-center">
+					   <div class="col-md-6 d-flex align-items-center">
+						   <?php if ($is_admin): ?>
+							   <a href="add_ebook.php" class="btn btn-primary add-btn-custom me-2" style="width:220px;border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;font-weight:600;">Add eBook</a>
+						   <?php endif; ?>
+					   </div>
+					   <div class="col-md-6 d-flex justify-content-end align-items-center">
+						   <form role="search" method="get" class="search-box ms-auto d-flex position-relative" action="ebooks.php" style="width:100%;max-width:400px;">
+							   <input class="form-control ps-5" placeholder="Search by title..." type="search" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" style="border-radius:10px !important;">
+							   <span class="position-absolute" style="left:16px;top:50%;transform:translateY(-55%);color:#3ea3c7;font-size:1.3rem;pointer-events:none;line-height:1;">
+								   <i class="icon icon-search"></i>
+							   </span>
+						   </form>
+					   </div>
+				   </div>
 
 					<div class="tab-content">
 						<div id="all-genre" data-tab-content class="active">
