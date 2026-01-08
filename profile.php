@@ -55,7 +55,8 @@ if(!isset($_SESSION['username'])) {
                                         <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                        <li><a class="dropdown-item" href="logout.php">Log out</a></li>
+                                        <li><a class="dropdown-item" href="change_password.php">Reset Password</a></li>
+										<li><a class="dropdown-item" href="logout.php">Logout</a></li>
                                     </ul>
                                 </div>
                             <?php else: ?>
