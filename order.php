@@ -34,15 +34,13 @@ if (isset($_GET['ebook_id']) && is_numeric($_GET['ebook_id'])) {
     <div class="order-card">
         <h2 class="mb-4 text-center">Order eBook</h2>
         <?php if ($ebook): ?>
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-center">
                 <div class="col-md-5 text-center">
                     <img src="<?php echo htmlspecialchars($ebook['cover_image']); ?>" alt="Cover" class="ebook-cover mb-3">
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 text-center">
                     <h4><?php echo htmlspecialchars($ebook['title']); ?></h4>
-                    <p><strong>Category:</strong> <?php echo htmlspecialchars($ebook['category']); ?></p>
-                    <p><strong>Price:</strong> units <?php echo number_format($ebook['price'], 2, ',', '.'); ?></p>
-                    <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($ebook['description'])); ?></p>
+                    <p style="font-size:1.2rem;"><strong>Price:</strong> units <?php echo number_format($ebook['price'], 2, ',', '.'); ?></p>
                     <a href="ebooks.php" class="btn btn-secondary mt-3">Go back</a>
                 </div>
             </div>
