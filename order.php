@@ -13,10 +13,18 @@ $orderSuccess = false;
 $orderError = '';
 $ebook = null;
 $new_balance = null;
-if (isset($_GET['ebook_id']) && is_numeric($_GET['ebook_id'])) {
+// Ondersteun zowel GET als POST voor ebook_id
+$ebook_id = null;
+if (isset($_POST['ebook_id']) && is_numeric($_POST['ebook_id'])) {
+    $ebook_id = $_POST['ebook_id'];
+} elseif (isset($_GET['ebook_id']) && is_numeric($_GET['ebook_id'])) {
+    $ebook_id = $_GET['ebook_id'];
+}
+
+if ($ebook_id) {
     // Haal eBook info
     $stmt = $db->prepare('SELECT * FROM ebooks WHERE id = ?');
-    $stmt->execute([$_GET['ebook_id']]);
+    $stmt->execute([$ebook_id]);
     $ebook = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($ebook) {
@@ -32,6 +40,28 @@ if (isset($_GET['ebook_id']) && is_numeric($_GET['ebook_id'])) {
             $stmt = $db->prepare('UPDATE users SET currency_units = ? WHERE username = ?');
             $stmt->execute([$new_balance, $_SESSION['username']]);
             $orderSuccess = true;
+
+            // Registreer order in orders en order_items tabel (indien nog niet gedaan)
+            // Haal user_id op
+            $stmt = $db->prepare('SELECT id FROM users WHERE username = ?');
+            $stmt->execute([$_SESSION['username']]);
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user_id = $userRow ? (int)$userRow['id'] : 0;
+            if ($user_id) {
+                // Maak nieuwe order aan
+                $stmt = $db->prepare('INSERT INTO orders (user_id, total, created_at) VALUES (?, ?, NOW())');
+                $stmt->execute([$user_id, $price]);
+                $order_id = $db->lastInsertId();
+                // Voeg order_item toe
+                $stmt = $db->prepare('INSERT INTO order_items (order_id, ebook_id, price) VALUES (?, ?, ?)');
+                $stmt->execute([$order_id, $ebook_id, $price]);
+            }
+
+            // Redirect indien gevraagd
+            if (isset($_POST['redirect']) && $_POST['redirect'] === 'profile.php') {
+                header('Location: profile.php');
+                exit();
+            }
         } else {
             $orderError = 'You do not have enough units to order this eBook.';
         }
