@@ -201,25 +201,6 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 								}
 								echo '</div>';
 							}
-								echo '<div class="row" id="ebooks-list">';
-								if (empty($ebooks)) {
-									echo '<div class="col-12 text-center py-4">No eBooks found in this category.</div>';
-								}
-								foreach ($ebooks as $ebook) {
-									echo '<div class="col-md-3">';
-									echo '<div class="product-item">';
-									echo '<figure class="product-style">';
-									echo '<img src="'.htmlspecialchars($ebook['cover_image']).'" alt="'.htmlspecialchars($ebook['title']).'" class="product-item" style="width:270px;height:380px;object-fit:cover;">';
-                                    echo '<a href="ebooks/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" class="add-to-cart" style="display:block;text-align:center;margin-top:10px;">Edit</a>';
-									echo '<figcaption>';
-									echo '<h3>'.htmlspecialchars($ebook['title']).'</h3>';
-									echo '<span>'.htmlspecialchars($ebook['category']).'</span>';
-									echo '<div class="item-price">units '.number_format($ebook['price'], 2, ',', '.').'</div>';
-									echo '</figcaption>';
-									echo '</div>';
-									echo '</div>';
-								}
-								echo '</div>';
 							
 							// Bulk delete PHP logica verwijderd
 							?>
