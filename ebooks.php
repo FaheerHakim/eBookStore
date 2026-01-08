@@ -26,6 +26,24 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <style>
+   .search-box {
+	   position: relative;
+   }
+   .search-box .form-control {
+	   height: 48px;
+	   padding-left: 2.2rem !important;
+   }
+   .search-box .search-icon {
+	   position: absolute;
+	   left: 16px;
+	   top: 0;
+	   height: 100%;
+	   display: flex;
+	   align-items: center;
+	   color: #3ea3c7;
+	   font-size: 1.3rem;
+	   pointer-events: none;
+   }
 		
 		body.account-page, body.account-page * { color: #000 !important; }
 		body.account-page a, body.account-page a * { color: #000 !important; }
@@ -197,9 +215,9 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 						   <?php endif; ?>
 					   </div>
 					   <div class="col-md-6 d-flex justify-content-end align-items-center">
-						   <form role="search" method="get" class="search-box ms-auto d-flex position-relative" action="ebooks.php" style="width:100%;max-width:400px;">
+						   <form role="search" method="get" class="search-box ms-auto d-flex position-relative" action="ebooks.php" style="width:100%;max-width:400px; top: 40px;">
 							   <input class="form-control ps-5" placeholder="Search by title..." type="search" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" style="border-radius:10px !important;">
-							   <span class="position-absolute" style="left:16px;top:50%;transform:translateY(-55%);color:#3ea3c7;font-size:1.3rem;pointer-events:none;line-height:1;">
+							   <span class="search-icon" style="position:absolute; left:10px; top:35%; transform:translateY(-50%); color:#3ea3c7;font-size:1.3rem;pointer-events:none;">
 								   <i class="icon icon-search"></i>
 							   </span>
 						   </form>
@@ -210,11 +228,22 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 						<div id="all-genre" data-tab-content class="active">
 							<?php
 							 $categoryFilter = $selectedCategory;
+							 $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
 							 if ($categoryFilter === 'all') {
-								 $statement = $db->query('SELECT * FROM ebooks ORDER BY id DESC LIMIT 10');
+								 if ($searchTerm !== '') {
+									 $statement = $db->prepare('SELECT * FROM ebooks WHERE title LIKE ? ORDER BY id DESC LIMIT 10');
+									 $statement->execute(['%' . $searchTerm . '%']);
+								 } else {
+									 $statement = $db->query('SELECT * FROM ebooks ORDER BY id DESC LIMIT 10');
+								 }
 							 } else {
-								 $statement = $db->prepare('SELECT * FROM ebooks WHERE category = ? ORDER BY id DESC LIMIT 10');
-								 $statement->execute([$categoryFilter]);
+								 if ($searchTerm !== '') {
+									 $statement = $db->prepare('SELECT * FROM ebooks WHERE category = ? AND title LIKE ? ORDER BY id DESC LIMIT 10');
+									 $statement->execute([$categoryFilter, '%' . $searchTerm . '%']);
+								 } else {
+									 $statement = $db->prepare('SELECT * FROM ebooks WHERE category = ? ORDER BY id DESC LIMIT 10');
+									 $statement->execute([$categoryFilter]);
+								 }
 							 }
 							$ebooks = $statement->fetchAll(PDO::FETCH_ASSOC);
 							if (!empty($ebooks)) {
