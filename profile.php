@@ -55,6 +55,7 @@ if(!isset($_SESSION['username'])) {
                                         <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                                         <li><a class="dropdown-item" href="change_password.php">Reset Password</a></li>
 										<li><a class="dropdown-item" href="logout.php">Logout</a></li>
                                     </ul>
@@ -120,9 +121,87 @@ if(!isset($_SESSION['username'])) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $currency = $user ? (int)$user['currency_units'] : 0;
     ?>
+
     <div class="container mt-4">
       <div class="alert alert-info text-center">Welcome, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>! This is your profile page.</div>
       <div class="alert alert-success text-center">Your digital balance: <strong><?php echo $currency; ?> units</strong></div>
+
+      <?php
+      // Toon bestelde eBooks
+  $orders = [];
+  $cart_ebooks = [];
+      // Haal user_id op
+      $stmt = $db->prepare('SELECT id FROM users WHERE username = ?');
+      $stmt->execute([$_SESSION['username']]);
+      $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+      $user_id = $userRow ? (int)$userRow['id'] : 0;
+      if ($user_id) {
+          // Bestelde eBooks
+          $stmt = $db->prepare('
+            SELECT ebooks.title, ebooks.pdf_path
+            FROM orders
+            JOIN order_items ON orders.id = order_items.order_id
+            JOIN ebooks ON order_items.ebook_id = ebooks.id
+            WHERE orders.user_id = ?
+            ORDER BY orders.created_at DESC, order_items.id DESC
+          ');
+          $stmt->execute([$user_id]);
+          $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+          // Ebooks in cart (winkelwagen) tonen
+          if (isset($_SESSION['cart']) && is_array($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+            // Haal alle ebook info op uit de cart
+            $placeholders = implode(',', array_fill(0, count($_SESSION['cart']), '?'));
+            $stmt = $db->prepare('SELECT title, pdf_path FROM ebooks WHERE id IN (' . $placeholders . ')');
+            $stmt->execute(array_values($_SESSION['cart']));
+            $cart_ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          }
+      }
+      ?>
+      <div class="card mt-4">
+        <div class="card-header bg-info text-white">Your Ordered eBooks</div>
+        <div class="card-body">
+          <?php if (count($orders) > 0): ?>
+            <ul class="list-group">
+              <?php foreach ($orders as $order): ?>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span><?php echo htmlspecialchars($order['title']); ?></span>
+                  <a href="ebooks/<?php echo htmlspecialchars($order['pdf_path']); ?>" class="btn btn-primary btn-sm" target="_blank">Download</a>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php else: ?>
+            <?php if (count($cart_ebooks) > 0): ?>
+              <div class="text-info">You have not ordered any eBooks yet, but you have eBooks in your cart. Click 'Order' on an eBook to order it.</div>
+              <ul class="list-group mt-2">
+                <?php foreach ($cart_ebooks as $cart): ?>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><?php echo htmlspecialchars($cart['title']); ?></span>
+                    <a href="ebooks.php" class="btn btn-success btn-sm">Order</a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php else: ?>
+              <div class="text-muted">You have not ordered any eBooks yet.</div>
+            <?php endif; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+        <?php if (count($cart_ebooks) > 0): ?>
+        <div class="card mt-4">
+          <div class="card-header bg-warning text-dark">eBooks in your Cart</div>
+          <div class="card-body">
+            <ul class="list-group">
+              <?php foreach ($cart_ebooks as $cart): ?>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span><?php echo htmlspecialchars($cart['title']); ?></span>
+                  <span class="badge bg-secondary">In cart</span>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
+        <?php endif; ?>
     </div>
 
   

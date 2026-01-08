@@ -259,7 +259,11 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 								echo '<a href="ebook_detail.php?id='.htmlspecialchars($ebook['id']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
 							} else {
 								echo '<a href="ebook_detail.php?id='.htmlspecialchars($ebook['id']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
-								echo '<a href="order.php?ebook_id='.htmlspecialchars($ebook['id']).'" class="btn btn-primary ebook-btn ms-2" style="width:44px;height:44px;border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;display:inline-flex;align-items:center;justify-content:center;" title="Add to cart"><i class="icon icon-clipboard"></i></a>';
+								echo '<form method="post" action="order.php" style="display:inline;">';
+								echo '<input type="hidden" name="ebook_id" value="'.htmlspecialchars($ebook['id']).'">';
+								echo '<input type="hidden" name="redirect" value="profile.php">';
+								echo '<button type="submit" class="btn btn-primary ebook-btn ms-2" style="width:44px;height:44px;border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;display:inline-flex;align-items:center;justify-content:center;" title="Order eBook"><i class="icon icon-clipboard"></i></button>';
+								echo '</form>';
 							}
 							echo '</div>';
 									echo '</figure>';
