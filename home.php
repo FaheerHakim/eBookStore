@@ -164,8 +164,21 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
                             <?php else: ?>
                                 <a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
                             <?php endif; ?>
-							<a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
-									units)</span></a>
+							<?php
+							// Toon totaal uitgegeven units aan bestelde eBooks
+							$total_spent = 0;
+							if (isset($_SESSION['username'])) {
+								require_once 'classes/Db.php';
+								$db = Db::getConnection();
+								$stmt = $db->prepare('SELECT SUM(total) as total_spent FROM orders o JOIN users u ON o.user_id = u.id WHERE u.username = ?');
+								$stmt->execute([$_SESSION['username']]);
+								$row = $stmt->fetch(PDO::FETCH_ASSOC);
+								if ($row && $row['total_spent'] !== null) {
+									$total_spent = (int)$row['total_spent'];
+								}
+							}
+							?>
+							<a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(<?php echo $total_spent; ?> units spent)</span></a>
 
 							<div class="action-menu">
 
