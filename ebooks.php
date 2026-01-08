@@ -143,9 +143,21 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 			</div>
 		</header>
 		<div class="container">
+			<div class="row justify-content-center mb-4">
+				<div class="col-md-8 d-flex align-items-center justify-content-between">
+					<form role="search" method="get" class="search-box flex-grow-1 me-3" action="ebooks.php">
+						<div class="input-group">
+							<input class="form-control" placeholder="Search by title..." type="search" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+							<button class="btn btn-primary" type="submit">Search</button>
+						</div>
+					</form>
+					<?php if ($is_admin): ?>
+						<a href="add_ebook.php" class="btn btn-primary" style="width:220px;border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;">Add eBook</a>
+					<?php endif; ?>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12">
-
 					<ul class="tabs">
 						<?php 
 						$categories = [
