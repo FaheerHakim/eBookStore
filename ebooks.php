@@ -184,8 +184,11 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 							echo '<div class="d-flex justify-content-between align-items-center" style="margin-top:10px;">';
 							if ($is_admin) {
 								echo '<button type="button" class="btn btn-primary ebook-delete-btn" data-id="'.htmlspecialchars($ebook['id']).'" style="border-radius:10px;background-color:#ecd17b !important;border-color:#ecd17b !important;color:#000 !important;">Delete</button>';
+								echo '<a href="ebook_detail.php?id='.htmlspecialchars($ebook['id']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
+							} else {
+								echo '<a href="ebook_detail.php?id='.htmlspecialchars($ebook['id']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
+								echo '<button type="button" class="btn btn-primary ebook-btn ms-2" style="width:44px;height:44px;border-radius:10px;background-color:#b3e6fb !important;border-color:#b3e6fb !important;color:#000 !important;display:inline-flex;align-items:center;justify-content:center;" title="Add to cart"><i class="icon icon-clipboard"></i></button>';
 							}
-							echo '<a href="ebook_detail.php?id='.htmlspecialchars($ebook['id']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
 							echo '</div>';
 									echo '</figure>';
 									echo '<figcaption>';
