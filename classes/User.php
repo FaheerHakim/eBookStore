@@ -92,4 +92,11 @@ class User {
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public static function changePassword($username, $newPassword) {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("UPDATE users SET password = :password WHERE username = :username");
+        $statement->bindValue(":username", $username);
+        $statement->bindValue(":password", password_hash($newPassword, PASSWORD_DEFAULT, ['cost' => 12]));
+        $statement->execute();
+    }
 }
