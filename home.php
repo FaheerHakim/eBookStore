@@ -162,7 +162,7 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
                                     </ul>
                                 </div>
                             <?php else: ?>
-                                <a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
+                                <a href="register.php" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
                             <?php endif; ?>
 							<?php
 							// Toon totaal uitgegeven units aan bestelde eBooks
