@@ -110,9 +110,20 @@ if(!isset($_SESSION['username'])) {
         </header>
     </div><!--header-wrap-->
 
-        <div class="container mt-4">
-			<div class="alert alert-info text-center">Welkom, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>! Dit is je profielpagina.</div>
-		</div>
+
+    <?php
+    // Haal currency_units op voor de ingelogde gebruiker
+    require_once 'classes/Db.php';
+    $db = Db::getConnection();
+    $stmt = $db->prepare('SELECT currency_units FROM users WHERE username = ?');
+    $stmt->execute([$_SESSION['username']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $currency = $user ? (int)$user['currency_units'] : 0;
+    ?>
+    <div class="container mt-4">
+      <div class="alert alert-info text-center">Welcome, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>! This is your profile page.</div>
+      <div class="alert alert-success text-center">Your digital balance: <strong><?php echo $currency; ?> units</strong></div>
+    </div>
 
   
 	<footer class="custom-footer">
