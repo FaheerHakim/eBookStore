@@ -325,7 +325,7 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
     <div class="row justify-content-center">
       <div class="col-md-8">
         <h4 class="footer-title mb-3">eBookStore &copy; 2026</h4>
-        <p class="footer-text mb-2">Thank you for visiting our webshop. Enjoy reading!</p>
+        <p class="footer-text mb-2">Thank you for visiting our website. Enjoy reading!</p>
         <div class="footer-social mb-2">
           <a href="#" class="me-2"><i class="icon icon-facebook"></i></a>
           <a href="#" class="me-2"><i class="icon icon-twitter"></i></a>
@@ -333,7 +333,7 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
           <a href="#"><i class="icon icon-behance-square"></i></a>
         </div>
         <div class="footer-contact">
-          <span>Email: <a href="mailto:info@ebookstore.com">info@ebookstore.com</a></span>
+          <span>Email: <a href="mailto:info@ebookstore.com">zaidsoufi@hotmail.com</a></span>
         </div>
       </div>
     </div>

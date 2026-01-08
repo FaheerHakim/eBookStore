@@ -224,7 +224,7 @@ if(!isset($_SESSION['username'])) {
     <div class="row justify-content-center">
       <div class="col-md-8">
         <h4 class="footer-title mb-3">eBookStore &copy; 2026</h4>
-        <p class="footer-text mb-2">Thank you for visiting our webshop. Enjoy reading!</p>
+        <p class="footer-text mb-2">Thank you for visiting our website. Enjoy reading!</p>
         <div class="footer-social mb-2">
           <a href="#" class="me-2"><i class="icon icon-facebook"></i></a>
           <a href="#" class="me-2"><i class="icon icon-twitter"></i></a>
@@ -232,7 +232,7 @@ if(!isset($_SESSION['username'])) {
           <a href="#"><i class="icon icon-behance-square"></i></a>
         </div>
         <div class="footer-contact">
-          <span>Email: <a href="mailto:info@ebookstore.com">info@ebookstore.com</a></span>
+          <span>Email: <a href="mailto:info@ebookstore.com">zaidsoufi@hotmail.com</a></span>
         </div>
       </div>
     </div>
@@ -240,7 +240,7 @@ if(!isset($_SESSION['username'])) {
 </footer>
 <style>
 .custom-footer {
-  background: #3ea3c7;
+  background: #EDEBE4;
   color: #fff;
   margin-top: 0;
   width: 100%;
