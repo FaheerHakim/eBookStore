@@ -6,6 +6,25 @@ class User {
     private $username;
     private $email;
     private $password;
+    private $currency_units;
+    /**
+     * Get the value of currency_units
+     */
+    public function getCurrencyUnits()
+    {
+        return $this->currency_units;
+    }
+
+    /**
+     * Set the value of currency_units
+     *
+     * @return  self
+     */
+    public function setCurrencyUnits($currency_units)
+    {
+        $this->currency_units = $currency_units;
+        return $this;
+    }
 
     /**
      * Get the value of username

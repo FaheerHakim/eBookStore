@@ -6,10 +6,11 @@ if(!empty($_POST)) {
     $register_Error = null;
     try {
         $user = new User();
-        $user->setUsername($_POST['username']);
-        $user->setEmail($_POST['email']);
-        $user->setPassword($_POST['password']);
-        $user->save();
+    $user->setUsername($_POST['username']);
+    $user->setEmail($_POST['email']);
+    $user->setPassword($_POST['password']);
+    $user->setCurrencyUnits(1000); // Start met 1000 units
+    $user->save();
     } catch (Exception $e) {
         $register_Error = $e->getMessage();
     }
