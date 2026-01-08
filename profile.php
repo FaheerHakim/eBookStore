@@ -90,7 +90,7 @@ if(!isset($_SESSION['username'])) {
                        <nav id="navbar">
 							<div class="main-menu stellarnav">
 								<ul class="menu-list" style="background-color:#fff !important;">
-									<li class="menu-item active"><a href="#home">Home</a></li>
+									<li class="menu-item active"><a href="home.php">Home</a></li>
 									<li class="menu-item"><a href="ebooks.php" class="nav-link">eBooks</a></li>
 									<li class="menu-item"><a href="#featured-books" class="nav-link">New Arrivals</a></li>
 									<li class="menu-item"><a href="#popular-books" class="nav-link">Blog</a></li>
@@ -115,27 +115,67 @@ if(!isset($_SESSION['username'])) {
 		</div>
 
   
-	<!-- Footer -->
-	 <footer id="footer" style="background-color: #fffbe6;">
-			<div class="container">
-				<div class="row align-items-center align-items-stretch mb-5">
-					<div class="col-md-4 py-4 py-md-5 aside-stretch d-flex align-items-center">
-						<div class="w-100">
-							<span class="subheading">Subscribe to our</span>
-							<h3 class="heading-section">Newsletter</h3>
-							<form action="#" class="subscribe-form mt-3" style="max-width:400px;">
-								<div class="form-group mb-2">
-									<input type="text" class="form-control" placeholder="Enter email address" style="border-radius:10px;">
-								</div>
-								<div>
-									<button type="submit" class="btn btn-primary w-100" style="border-radius:10px;"><span>Submit</span></button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		 </footer>
+	<footer class="custom-footer">
+  <div class="container text-center py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h4 class="footer-title mb-3">eBookStore &copy; 2026</h4>
+        <p class="footer-text mb-2">Thank you for visiting our webshop. Enjoy reading!</p>
+        <div class="footer-social mb-2">
+          <a href="#" class="me-2"><i class="icon icon-facebook"></i></a>
+          <a href="#" class="me-2"><i class="icon icon-twitter"></i></a>
+          <a href="#" class="me-2"><i class="icon icon-youtube-play"></i></a>
+          <a href="#"><i class="icon icon-behance-square"></i></a>
+        </div>
+        <div class="footer-contact">
+          <span>Email: <a href="mailto:info@ebookstore.com">info@ebookstore.com</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+.custom-footer {
+  background: #3ea3c7;
+  color: #fff;
+  margin-top: 0;
+  width: 100%;
+  box-shadow: 0 -2px 12px rgba(62,163,199,0.08);
+}
+.custom-footer .footer-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.custom-footer .footer-text {
+  font-size: 1rem;
+}
+.custom-footer .footer-social a {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-right: 8px;
+  transition: color 0.2s;
+}
+.custom-footer .footer-social a:hover {
+  color: #ecd17b;
+}
+.custom-footer .footer-contact {
+  margin-top: 8px;
+  font-size: 0.98rem;
+}
+.custom-footer .footer-contact a {
+  color: #ecd17b;
+  text-decoration: underline;
+}
+@media (max-width: 600px) {
+  .custom-footer .footer-title {
+    font-size: 1.05rem;
+  }
+  .custom-footer .footer-text {
+    font-size: 0.95rem;
+  }
+}
+</style>
 
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

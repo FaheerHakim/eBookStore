@@ -99,7 +99,7 @@
 	body.home-page a, body.home-page a * { color: #000 !important; }
 	body.home-page a:hover, body.home-page a:hover * { color: #ecd17b !important; }
 	body.home-page i, body.home-page .icon { color: #3ea3c7 !important; }
-</style>
+	</style>
 </head>
 
 <?php
@@ -202,7 +202,7 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 						<nav id="navbar">
 							<div class="main-menu stellarnav">
 								<ul class="menu-list" style="background-color:#fff !important;">
-									<li class="menu-item active"><a href="#home">Home</a></li>
+									<li class="menu-item active"><a href="home.php">Home</a></li>
 									<li class="menu-item"><a href="ebooks.php" class="nav-link">eBooks</a></li>
 									<li class="menu-item"><a href="#featured-books" class="nav-link">New Arrivals</a></li>
 									<li class="menu-item"><a href="#popular-books" class="nav-link">Blog</a></li>
@@ -267,16 +267,65 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 		</div>
 	</section>
 
-	<section id="quotation" class="align-center" style="background-color:#EDEBE4; justify-content:center; display:flex; padding:40px 0;">
-		
-		<div class="inner-content">
-			<h2 class="section-title divider">Quote of the day</h2>
-			<blockquote data-aos="fade-up">
-				   <q>He who thinks he can, and he who thinks he can't are both usually right.</q>
-				<div class="author-name">Confucius</div>
+<!-- Nieuwe quote sectie met eigen stijl -->
+	<section class="custom-quote-section">
+		<div class="custom-quote-inner">
+			<h2 class="custom-quote-title">Inspiration</h2>
+			<blockquote class="custom-quote-block">
+				<q>He who thinks he can, and he who thinks he can't are both usually right.</q>
+				<div class="custom-quote-author">Confucius</div>
 			</blockquote>
 		</div>
 	</section>
+	<style>
+	.custom-quote-section {
+		background: #f9f6f1;
+		padding: 48px 0 36px 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.custom-quote-inner {
+		max-width: 600px;
+		margin: 0 auto;
+		text-align: center;
+		background: #fffbe9;
+		border-radius: 18px;
+		box-shadow: 0 2px 16px rgba(116,81,46,0.08);
+		padding: 32px 24px 24px 24px;
+	}
+	.custom-quote-title {
+		font-size: 1.5rem;
+		color: #3ea3c7;
+		margin-bottom: 18px;
+		font-weight: 700;
+		letter-spacing: 1px;
+	}
+	.custom-quote-block q {
+		color: #000;
+		font-size: 1.25rem;
+		font-style: italic;
+		line-height: 1.6;
+	}
+	.custom-quote-author {
+		color: #6f4929;
+		font-weight: 600;
+		margin-top: 14px;
+		font-size: 1rem;
+		letter-spacing: 0.5px;
+	}
+	@media (max-width: 600px) {
+		.custom-quote-inner {
+			padding: 18px 8px 16px 8px;
+		}
+		.custom-quote-title {
+			font-size: 1.1rem;
+		}
+		.custom-quote-block q {
+			font-size: 1rem;
+		}
+	}
+	</style>
 
 	
 	
@@ -365,46 +414,69 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 	</section>
 
 
-	<footer id="footer">
-
-	<section id="subscribe">
-		<div class="container">
-			<div class="row justify-content-center">
-
-				<div class="col-md-8">
-					<div class="row">
-
-						<div class="col-md-6">
-
-							<div class="title-element">
-								<h2 class="section-title divider">Subscribe to our newsletter</h2>
-							</div>
-
-						</div>
-						<div class="col-md-6">
-
-							<div class="subscribe-content" data-aos="fade-up">
-								<p>Stay up to date with our latest news and products.</p>
-								<form id="form">
-									<input type="text" name="email" placeholder="Enter your email addresss here">
-									<button class="btn-subscribe">
-										<span>send</span>
-										<i class="icon icon-send"></i>
-									</button>
-								</form>
-							</div>
-
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-	</footer>
-
+	<footer class="custom-footer">
+  <div class="container text-center py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h4 class="footer-title mb-3">eBookStore &copy; 2026</h4>
+        <p class="footer-text mb-2">Thank you for visiting our webshop. Enjoy reading!</p>
+        <div class="footer-social mb-2">
+          <a href="#" class="me-2"><i class="icon icon-facebook"></i></a>
+          <a href="#" class="me-2"><i class="icon icon-twitter"></i></a>
+          <a href="#" class="me-2"><i class="icon icon-youtube-play"></i></a>
+          <a href="#"><i class="icon icon-behance-square"></i></a>
+        </div>
+        <div class="footer-contact">
+          <span>Email: <a href="mailto:info@ebookstore.com">info@ebookstore.com</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+/* Footer kleuren consistent met site */
+.custom-footer {
+	background: #3ea3c7;
+	color: #fff;
+	margin-top: 0;
+	width: 100%;
+	box-shadow: 0 -2px 12px rgba(62,163,199,0.08);
+}
+.custom-footer .footer-title {
+	font-size: 1.3rem;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: #ecd17b;
+}
+.custom-footer .footer-text {
+	font-size: 1rem;
+}
+.custom-footer .footer-social a {
+	color: #fff;
+	font-size: 1.3rem;
+	margin-right: 8px;
+	transition: color 0.2s;
+}
+.custom-footer .footer-social a:hover {
+	color: #ecd17b;
+}
+.custom-footer .footer-contact {
+	margin-top: 8px;
+	font-size: 0.98rem;
+}
+.custom-footer .footer-contact a {
+	color: #ecd17b;
+	text-decoration: underline;
+}
+@media (max-width: 600px) {
+	.custom-footer .footer-title {
+		font-size: 1.05rem;
+	}
+	.custom-footer .footer-text {
+		font-size: 0.95rem;
+	}
+}
+</style>
 
 		<script src="js/jquery-1.11.0.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
