@@ -191,7 +191,7 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 						echo '<img src="'.htmlspecialchars($ebook['cover_image']).'" alt="'.htmlspecialchars($ebook['title']).'" class="product-item" style="width:270px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 4px 24px rgba(62,163,199,0.18);background:#fff;padding:12px;border:3px solid #6f4929ff;">';
 							echo '<div class="d-flex justify-content-between align-items-center" style="margin-top:10px;">';
 							echo '<button type="button" class="btn btn-primary ebook-delete-btn" data-id="'.htmlspecialchars($ebook['id']).'" style="border-radius:10px;background-color:#ecd17b !important;border-color:#ecd17b !important;color:#000 !important;">Delete</button>';
-							echo '<a href="uploads/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">More info</a>';
+							echo '<a href="ebooks/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">More info</a>';
 							echo '</div>';
 									echo '</figure>';
 									echo '<figcaption>';
@@ -215,12 +215,11 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 									echo '<div class="product-item">';
 									echo '<figure class="product-style">';
 									echo '<img src="'.htmlspecialchars($ebook['cover_image']).'" alt="'.htmlspecialchars($ebook['title']).'" class="product-item" style="width:270px;height:380px;object-fit:cover;">';
-									echo '<a href="uploads/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" class="add-to-cart" style="display:block;text-align:center;margin-top:10px;">Bekijk/download</a>';
-									echo '</figure>';
+                                    echo '<a href="ebooks/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" class="add-to-cart" style="display:block;text-align:center;margin-top:10px;">Edit</a>';
 									echo '<figcaption>';
 									echo '<h3>'.htmlspecialchars($ebook['title']).'</h3>';
 									echo '<span>'.htmlspecialchars($ebook['category']).'</span>';
-									echo '<div class="item-price">€ '.number_format($ebook['price'], 2, ',', '.').'</div>';
+									echo '<div class="item-price">units '.number_format($ebook['price'], 2, ',', '.').'</div>';
 									echo '</figcaption>';
 									echo '</div>';
 									echo '</div>';
@@ -280,5 +279,24 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/script.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(function() {
+  $('.ebook-delete-btn').on('click', function() {
+    if(confirm('Are you sure you want to delete this eBook?')) {
+      var ebookId = $(this).data('id');
+      $.post('delete_ebook.php', {id: ebookId}, function(response) {
+        if($.trim(response) === 'success') {
+          location.reload();
+        } else {
+          alert('Delete failed: ' + response);
+        }
+      });
+    }
+  });
+});
+</script>
 </body>
 </html>
