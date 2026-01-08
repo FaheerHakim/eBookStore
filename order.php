@@ -71,12 +71,13 @@ if (isset($_GET['ebook_id']) && is_numeric($_GET['ebook_id'])) {
                         <h4><?php echo htmlspecialchars($ebook['title']); ?></h4>
                         <p style="font-size:1.2rem;"><strong>Price:</strong> <?php echo intval($ebook['price']); ?> units</p>
                         <p><strong>Category:</strong> <?php echo htmlspecialchars($ebook['category']); ?></p>
-                        <a href="ebooks.php" class="btn btn-secondary mt-3">Go back</a>
+                        <a href="profile.php" class="btn btn-success mt-3">Go to Profile</a>
+                        <a href="ebooks.php" class="btn btn-secondary mt-3 ms-2">Back</a>
                     </div>
                 </div>
             <?php elseif ($orderError): ?>
                 <div class="alert alert-danger text-center mb-4"><?php echo htmlspecialchars($orderError); ?></div>
-                <div class="text-center"><a href="ebooks.php" class="btn btn-secondary">Go back</a></div>
+                <div class="text-center"><a href="ebooks.php" class="btn btn-secondary">Back</a></div>
             <?php else: ?>
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-5 text-center">
@@ -85,17 +86,17 @@ if (isset($_GET['ebook_id']) && is_numeric($_GET['ebook_id'])) {
                     <div class="col-md-7 text-center">
                         <h4><?php echo htmlspecialchars($ebook['title']); ?></h4>
                         <p style="font-size:1.2rem;"><strong>Price:</strong> <?php echo intval($ebook['price']); ?> units</p>
-                        <form method="get" action="order.php">
+                        <form method="get" action="order.php" class="d-inline">
                             <input type="hidden" name="ebook_id" value="<?php echo intval($ebook['id']); ?>">
-                            <button type="submit" class="btn btn-success mt-3">Confirm Order</button>
+                            <button type="submit" class="btn btn-success mt-3">Order</button>
                         </form>
-                        <a href="ebooks.php" class="btn btn-secondary mt-3">Go back</a>
+                        <a href="ebooks.php" class="btn btn-secondary mt-3 ms-2">Back</a>
                     </div>
                 </div>
             <?php endif; ?>
         <?php else: ?>
             <div class="alert alert-warning text-center">No eBook selected or eBook not found.</div>
-            <div class="text-center"><a href="ebooks.php" class="btn btn-secondary">Go back</a></div>
+            <div class="text-center"><a href="ebooks.php" class="btn btn-secondary">Back</a></div>
         <?php endif; ?>
     </div>
 </div>
