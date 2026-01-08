@@ -240,7 +240,7 @@ $users = User::getAll();
 </footer>
 <style>
 .custom-footer {
-  background-color: #3ea3c7;
+    background-color: #EDEBE4;
   color: #fff;
   margin-top: 0;
   width: 100%;

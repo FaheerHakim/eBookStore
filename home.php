@@ -258,7 +258,7 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 										<div class="banner-content text-start me-5" style="min-width:320px;max-width:400px;">
 											<h2 class="banner-title mb-3"><?= htmlspecialchars($ebook['title']) ?></h2>
 											<p class="mb-4"><?= htmlspecialchars(mb_strimwidth($ebook['category'], 0, 60, '...')) ?></p>
-											<a href="ebook_details.php?id=<?= intval($ebook['id']) ?>" class="btn btn-primary">View Details</a>
+											<a href="ebook_detail.php?id=<?= intval($ebook['id']) ?>" class="btn btn-primary">View Details</a>
 										</div>
 										<img src="<?= htmlspecialchars($ebook['cover_image']) ?>" alt="<?= htmlspecialchars($ebook['title']) ?>" class="banner-image ms-4" style="width:370px;height:520px;object-fit:cover;border-radius:18px;box-shadow:0 4px 24px rgba(116, 81, 46, 0.12);background:#f6f8fa;border:4px solid #6f4929ff;padding:8px;">
 									</div>
@@ -447,8 +447,8 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 </footer>
 <style>
 /* Footer kleuren consistent met site */
-.custom-footer {
-	background: #3ea3c7;
+	.custom-footer {
+		background: #EDEBE4;
 	color: #fff;
 	margin-top: 0;
 	width: 100%;

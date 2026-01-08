@@ -341,8 +341,8 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 </footer>
 <style>
 /* Footer kleuren consistent met site */
-.custom-footer {
-	background: #3ea3c7;
+	.custom-footer {
+		background: #EDEBE4;
 	color: #fff;
 	margin-top: 0;
 	width: 100%;
