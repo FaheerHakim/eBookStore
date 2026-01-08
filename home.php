@@ -357,13 +357,7 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 								   <div class="product-item">
 									   <figure class="product-style">
 										   <img src="<?= htmlspecialchars($ebook['cover_image']) ?>" alt="<?= htmlspecialchars($ebook['title']) ?>" class="product-item" style="width:270px;height:380px;object-fit:cover;">
-										   <a href="uploads/<?= htmlspecialchars($ebook['pdf_path']) ?>" target="_blank" class="add-to-cart" style="display:block;text-align:center;margin-top:10px;">Bekijk/download</a>
-										   <?php if ($is_admin): ?>
-											 <form method="post" style="margin-top:10px;text-align:center;">
-											   <input type="hidden" name="delete_ebook_id" value="<?= $ebook['id'] ?>">
-											   <button type="submit" onclick="return confirm('Weet je zeker dat je dit eBook wilt verwijderen?');" style="background:#c0392b;color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:0.95rem;">Verwijder</button>
-											 </form>
-										   <?php endif; ?>
+										   <a href="ebooks/<?= htmlspecialchars($ebook['pdf_path']) ?>" target="_blank" class="add-to-cart" style="display:block;text-align:center;margin-top:10px;">More info</a>
 									   </figure>
 									   <figcaption>
 										   <h3><?= htmlspecialchars($ebook['title']) ?></h3>
