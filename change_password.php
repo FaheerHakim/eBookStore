@@ -67,23 +67,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container" style="max-width:420px;">
         <div class="change-password-card">
-            <h2 class="mb-4 text-center">Wachtwoord wijzigen</h2>
+            <h2 class="mb-4 text-center">Password Reset</h2>
             <?php if ($passwordMsg) { echo $passwordMsg; } ?>
             <form method="post" autocomplete="off">
                 <div class="mb-3">
-                    <label for="new_password" class="form-label">Nieuw wachtwoord</label>
+                    <label for="new_password" class="form-label">New Password</label>
                     <input type="password" id="new_password" name="new_password" class="form-control" required minlength="6">
                 </div>
                 <div class="mb-3">
-                    <label for="confirm_password" class="form-label">Bevestig wachtwoord</label>
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
                     <input type="password" id="confirm_password" name="confirm_password" class="form-control" required minlength="6">
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Wachtwoord opslaan</button>
+                    <button type="submit" class="btn btn-primary">Save Password</button>
                 </div>
             </form>
             <div class="mt-3 text-center">
-                <a href="profile.php">Terug naar profiel</a>
+                <a href="profile.php">Back to Profile</a>
             </div>
         </div>
     </div>
