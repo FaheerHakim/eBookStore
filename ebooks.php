@@ -191,7 +191,7 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 						echo '<img src="'.htmlspecialchars($ebook['cover_image']).'" alt="'.htmlspecialchars($ebook['title']).'" class="product-item" style="width:270px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 4px 24px rgba(62,163,199,0.18);background:#fff;padding:12px;border:3px solid #6f4929ff;">';
 							echo '<div class="d-flex justify-content-between align-items-center" style="margin-top:10px;">';
 							echo '<button type="button" class="btn btn-primary ebook-delete-btn" data-id="'.htmlspecialchars($ebook['id']).'" style="border-radius:10px;background-color:#ecd17b !important;border-color:#ecd17b !important;color:#000 !important;">Delete</button>';
-							echo '<a href="ebooks/'.htmlspecialchars($ebook['pdf_path']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
+							echo '<a href="ebook_detail.php?id='.htmlspecialchars($ebook['id']).'" target="_blank" style="text-decoration:underline;color:#3ea3c7;">See more</a>';
 							echo '</div>';
 									echo '</figure>';
 									echo '<figcaption>';
