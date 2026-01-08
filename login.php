@@ -117,8 +117,9 @@ $users = User::getAll();
                                         <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                        <li><a class="dropdown-item" href="change_password.php">Reset password</a></li>
-                                        <li><a class="dropdown-item" href="logout.php">Log out</a></li>
+                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+										<li><a class="dropdown-item" href="change_password.php">Reset Password</a></li>
+                                        <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
                                     </ul>
                                 </div>
                             <?php else: ?>

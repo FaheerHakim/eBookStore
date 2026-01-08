@@ -137,14 +137,15 @@ $is_admin = isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] === true || $
 										<span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+										<li><a class="dropdown-item" href="profile.php">Profile</a></li>
 										<li><a class="dropdown-item" href="change_password.php">Reset Password</a></li>
-										<li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                        <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
 									</ul>
 								</div>
 							<?php else: ?>
 								<a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
 							<?php endif; ?>
-							<a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0 $)</span></a>
+							<a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0 units)</span></a>
 							<div class="action-menu">
 								<div class="search-bar">
 									<a href="#" class="search-button search-toggle" data-selector="#header-wrap">
