@@ -320,38 +320,14 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 						<h2 class="section-title">Popular eBooks</h2>
 					</div>
 
-					<ul class="tabs">
-						<?php 
-						$categories = [
-							'all' => 'All Genre',
-							'OCD' => 'OCD',
-							'Panic & Anxiety' => 'Panic & Anxiety',
-							'Productivity' => 'Productivity',
-							'Stress tolerance' => 'Stress tolerance'
-						];
-						$active_cat = isset($_GET['cat']) ? $_GET['cat'] : 'all';
-						foreach ($categories as $cat_key => $cat_label): ?>
-							<li class="tab<?php if($active_cat === $cat_key) echo ' active'; ?>">
-								<a href="#" class="cat-tab-link" data-cat="<?= htmlspecialchars($cat_key) ?>"><?= htmlspecialchars($cat_label) ?></a>
-							</li>
-						<?php endforeach; ?>
-					</ul>
+
 
 					<div class="tab-content">
 						<div id="all-genre" data-tab-content class="active">
 							<div class="row" id="ebooks-list">
 							<?php
-							$cat_filter = isset($_GET['cat']) ? $_GET['cat'] : 'all';
-							if ($cat_filter === 'all') {
-								$stmt = $db->query('SELECT * FROM ebooks ORDER BY id DESC LIMIT 10');
-							} else {
-								$stmt = $db->prepare('SELECT * FROM ebooks WHERE category = ? ORDER BY id DESC LIMIT 10');
-								$stmt->execute([$cat_filter]);
-							}
+							$stmt = $db->query('SELECT * FROM ebooks ORDER BY id DESC LIMIT 10');
 							$ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-							if (empty($ebooks)) {
-								echo '<div class="col-12 text-center py-4">Geen eBooks gevonden in deze categorie.</div>';
-							}
 							foreach ($ebooks as $ebook): ?>
 								<div class="col-md-3">
 								   <div class="product-item">
@@ -428,27 +404,6 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 	</section>
 
 	</footer>
-		<script>
-		// AJAX filtering voor ebooks per categorie
-		document.addEventListener('DOMContentLoaded', function() {
-			const tabLinks = document.querySelectorAll('.cat-tab-link');
-			const ebooksList = document.getElementById('ebooks-list');
-			const isAdmin = <?= $is_admin ? '1' : '0' ?>;
-			tabLinks.forEach(function(link) {
-				link.addEventListener('click', function(e) {
-					e.preventDefault();
-					tabLinks.forEach(l => l.parentElement.classList.remove('active'));
-					link.parentElement.classList.add('active');
-					const cat = link.getAttribute('data-cat');
-					fetch('ajax/filter_ebooks.php?cat=' + encodeURIComponent(cat) + '&admin=' + isAdmin)
-						.then(res => res.text())
-						.then(html => {
-							ebooksList.innerHTML = html;
-						});
-				});
-			});
-		});
-		</script>
 
 
 		<script src="js/jquery-1.11.0.min.js"></script>
@@ -457,19 +412,6 @@ if ($is_admin && isset($_POST['delete_ebook_id'])) {
 				crossorigin="anonymous"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/script.js"></script>
-
-		<script>
-		// Scroll automatisch naar #popular-books na filteren, maar alleen als er een categorie is gekozen
-		document.addEventListener('DOMContentLoaded', function() {
-			const urlParams = new URLSearchParams(window.location.search);
-			if(urlParams.has('cat')) {
-				const section = document.getElementById('popular-books');
-				if(section) {
-					section.scrollIntoView({behavior: 'smooth'});
-				}
-			}
-		});
-		</script>
 
 </body>
 
