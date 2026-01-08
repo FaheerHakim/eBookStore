@@ -20,7 +20,7 @@ if ($is_admin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_ebo
         $_POST['category'] ?? '',
         $ebook_id
     ]);
-    $edit_success = "eBook succesvol bijgewerkt!";
+    $edit_success = "eBook updated successfully!";
 }
 
 // Haal eBook info op
@@ -68,30 +68,30 @@ if (!$ebook) {
                     <!-- Admin edit formulier -->
                     <form method="post">
                         <div class="mb-3">
-                            <label class="form-label">Titel</label>
+                            <label class="form-label">Title</label>
                             <input type="text" name="title" class="form-control" value="<?php echo htmlspecialchars($ebook['title']); ?>" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Beschrijving</label>
+                            <label class="form-label">Description</label>
                             <textarea name="description" class="form-control" rows="4"><?php echo htmlspecialchars($ebook['description']); ?></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Prijs</label>
+                            <label class="form-label">Price</label>
                             <input type="number" name="price" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($ebook['price']); ?>" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Categorie</label>
+                            <label class="form-label">Category</label>
                             <input type="text" name="category" class="form-control" value="<?php echo htmlspecialchars($ebook['category']); ?>" required>
                         </div>
-                        <button type="submit" name="edit_ebook" class="btn btn-primary">Opslaan</button>
-                        <a href="ebook_detail.php?id=<?php echo $ebook_id; ?>" class="btn btn-secondary ms-2">Annuleren</a>
+                        <button type="submit" name="edit_ebook" class="btn btn-primary">Save</button>
+                        <a href="ebook_detail.php?id=<?php echo $ebook_id; ?>" class="btn btn-secondary ms-2">Cancel</a>
                     </form>
                 <?php else: ?>
                     <!-- Overzicht -->
-                    <p><strong>Beschrijving:</strong> <?php echo nl2br(htmlspecialchars($ebook['description'])); ?></p>
-                    <p><strong>Prijs:</strong> € <?php echo number_format($ebook['price'], 2, ',', '.'); ?></p>
-                    <p><strong>Categorie:</strong> <?php echo htmlspecialchars($ebook['category']); ?></p>
-                    <p><strong>Toegevoegd op:</strong> <?php echo htmlspecialchars($ebook['created_at']); ?></p>
+                    <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($ebook['description'])); ?></p>
+                    <p><strong>Price:</strong> units <?php echo number_format($ebook['price'], 2, ',', '.'); ?></p>
+                    <p><strong>Category:</strong> <?php echo htmlspecialchars($ebook['category']); ?></p>
+                    <p><strong>Added on:</strong> <?php echo htmlspecialchars($ebook['created_at']); ?></p>
                 <?php endif; ?>
                 <div class="mt-4">
                     <a href="ebooks.php" class="btn btn-secondary">Go back</a>
